@@ -39,22 +39,27 @@ task brew {
 }
 
 task pour {
+    dependsOn "brew"
     doLast {
         println "Pouring. Glug, glug, glug."
     }
 }
 
 task addSweetener {
+    dependsOn "pour"
     doLast {
         println "Adding sweetener. Stir, stir, stir."
     }
 }
 
 task drink {
+    dependsOn "pour"
     doLast {
         println "Drinking. Gulp, gulp, gulp."
     }
 }
+
+drink.shouldRunAfter addSweetener
 
 task blackCoffee {
     doLast {
@@ -62,8 +67,13 @@ task blackCoffee {
     }
 }
 
+blackCoffee.finalizedBy drink
+
 task sweetCoffee {
     doLast {
         println "Mmmm, sweet! just how I like it."
     }
 }
+
+sweetCoffee.finalizedBy(addSweetener, drink)  // 2 things, so needed ().  Takes Varargs
+
