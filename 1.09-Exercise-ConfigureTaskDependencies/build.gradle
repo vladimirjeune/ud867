@@ -59,21 +59,22 @@ task drink {
     }
 }
 
-drink.shouldRunAfter addSweetener
+drink.mustRunAfter addSweetener  // Could also do: mustRunAfter addSweetener in drink
 
 task blackCoffee {
+    dependsOn drink
     doLast {
         println "Mmmm, bitter! just how I like it."
     }
 }
 
-blackCoffee.finalizedBy drink
+
 
 task sweetCoffee {
+    dependsOn drink, addSweetener
     doLast {
         println "Mmmm, sweet! just how I like it."
     }
 }
 
-sweetCoffee.finalizedBy(addSweetener, drink)  // 2 things, so needed ().  Takes Varargs
 
