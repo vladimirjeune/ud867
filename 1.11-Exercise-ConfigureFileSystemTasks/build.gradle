@@ -24,3 +24,25 @@
     4. Create a task named "deleteHelp". This task should perform the following:
         a) Delete the "help" folder created by the "copyWeb" task.
 */
+
+
+
+task copyWeb(type: Copy) {
+
+    from('src/web') {
+        into 'web'
+    }
+
+    from ('src/docs') {
+        include '*.txt'
+        into 'web/help'
+    }
+
+    into 'build'
+}
+
+
+
+task deleteBuild(type: Delete) {
+    delete 'build'
+}
