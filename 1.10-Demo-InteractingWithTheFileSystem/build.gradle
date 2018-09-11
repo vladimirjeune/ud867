@@ -102,12 +102,12 @@ task zipImageFolders(type: Zip) {
     destinationDir = file('build')
 
     from('images') {
-        include '*.jpg'
+        includes '*.jpg'
         into 'jpeg'
     }
 
     from('images') {
-        include '*.gif'
+        includes '*.gif'
         into 'gif'
     }
 }
