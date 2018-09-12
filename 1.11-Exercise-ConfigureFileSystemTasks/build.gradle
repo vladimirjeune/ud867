@@ -54,6 +54,18 @@ task bundleWeb(type: Zip) {
     }
 }
 
+
+task unpackBundle(type: Copy) {
+    from zipTree('build/web.zip') 
+    into 'build/exploded'
+}
+
+
+task deleteHelp(type: Delete) {
+    delete 'build/web/help'
+}
+
+
 task deleteBuild(type: Delete) {
     delete 'build'
 }
