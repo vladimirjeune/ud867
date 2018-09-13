@@ -18,10 +18,10 @@ still UP-TO-DATE.
 9. Delete the "build/sources.zip" file.
 10. Run the "bundleSources" task and note it is no longer UP-TO-DATE.
 11. Modify the contents of one of the files in the "src" directory.
-12. Run the "bundleSources" task and note neither task is UP-TO-DATE.
+12. Run the "bundleSources" task and note neither task is UP-TO-DATE.  // ?
 13. Run the "bundleSources" task again and note both tasks are now UP-TO-DATE.
 14. Delete the "build/out" directory.
-15. Run the "bundleSources" task again and note that only the "bundleSources"
+15. Run the "bundleSources" task again and note that only the "bundleSources"  // ?
 task is marked as UP-TO-DATE.
 */
 
