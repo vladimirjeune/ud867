@@ -26,3 +26,7 @@ task bundleWeb(type: Zip) {
 
     from 'src/web'
 }
+
+ext {
+	webOutputDir='build3'
+}
