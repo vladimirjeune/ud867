@@ -28,7 +28,11 @@ task hello(type: HelloTask)
 class HelloTask extends DefaultTask {
     @TaskAction
     void doAction() {
+        logger.info('An quiet log message which is always logged, begin.')
         println 'Hello World'
+        logger.lifecycle('A LIFECYCLE message')
+        logger.debug('Catch Me If You Can')
+        logger.info('An quiet message which is always logged, end')
     }
 }
 
