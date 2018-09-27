@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.udacity.gradle.flavorspecificactivity.R;  // Apparently you have to import R?
 
 public class MainActivity extends AppCompatActivity {
 

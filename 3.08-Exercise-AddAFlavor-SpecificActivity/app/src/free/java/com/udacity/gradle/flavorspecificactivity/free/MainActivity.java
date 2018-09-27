@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import com.udacity.gradle.flavorspecificactivity.R;
 
-package com.udacity.gradle.flavorspecificactivity;
-
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
