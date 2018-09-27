@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        mJokeButton = findViewById();
+
     }
 
 
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
 
         Context context = this;
-        CharSequence text = this.getString(R.string.toast_text);
+        CharSequence text = "You paid!!! Wooh!";
         int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);
