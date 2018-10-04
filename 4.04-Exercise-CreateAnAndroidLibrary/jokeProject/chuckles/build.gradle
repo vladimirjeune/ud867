@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	testImplementation 'junit:junit:4.11'
+}
+
+sourceCompatibility = 1.7  // No quotes here
+
