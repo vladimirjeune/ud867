@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JokesRUs</string>
+    <string name="get_joke">Get a joke</string>
 </resources>
