@@ -14,3 +14,17 @@ Exercises:
     c) Archive includes all files from "src/<Source>" directory.
 
 */
+
+tasks.addRule("Pattern: bundle<Source>") { String taskName ->
+        if (taskName.startsWith("bundle")) {
+
+            def source = taskName - 'bundle'
+            task(taskName, type: Zip ) {
+                baseName = source
+                destinationDir = file('build')
+
+                from 'src/$source'
+            }
+        }
+
+}
