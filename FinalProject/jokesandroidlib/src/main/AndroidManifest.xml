@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.com.vladimirjeune.jokesandroidlib">
 
-    <application>
+    <application
+        android:theme="@style/Theme.AppCompat.Light"
+        >
         <activity android:name=".MainActivity"></activity>
     </application>
 
