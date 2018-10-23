@@ -12,7 +12,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
+        tools:replace="android:theme"
         tools:ignore="GoogleAppIndexingWarning">
+        <!-- The tools:replace was because I had to put a theme in my Android Libary to fix another problem -->
         <!--This meta-data tag is required to use Google Play Services.-->
         <meta-data
             android:name="com.google.android.gms.version"
