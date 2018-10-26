@@ -1,21 +1,30 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 import com.udacity.gradle.builditbigger.jokes.JokeTeller;
+
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public final String JOKE_TAG = app.com.vladimirjeune.jokesandroidlib.MainActivity.JOKE_TAG;
+    public static final String JOKE_TAG = app.com.vladimirjeune.jokesandroidlib.MainActivity.JOKE_TAG;
 
     JokeTeller jokeTeller = new JokeTeller();
+    String saidJoke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +56,96 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, jokeTeller.getJoke(), Toast.LENGTH_LONG).show();
 
-        Intent jokeIntent = new Intent(this, app.com.vladimirjeune.jokesandroidlib.MainActivity.class);
-        jokeIntent.putExtra(JOKE_TAG, jokeTeller.getJoke());
-        startActivity(jokeIntent);
+        new EndpointsAsyncTask().execute(this);  // Get joke and display it
 
     }
+
+}
+
+class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
+//    private static MyEndpoint myApiService = null;
+    private static MyApi myApiService = null;
+
+    private Context context;
+
+    @Override
+    protected String doInBackground(Context... contexts) {
+
+        if (myApiService == null ) {
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+                    new AndroidJsonFactory(), null)
+                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")  // - 10.0.2.2 is localhost's IP address in Android emulator
+                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                        @Override
+                        public void initialize(AbstractGoogleClientRequest<?> request) throws IOException {
+                            request.setDisableGZipContent(true);  // Turn off compression when run against local devappserver
+                        }
+                    });
+            // end options for devappserver
+
+            myApiService = builder.build();
+        }
+
+        context = contexts[0];
+
+        try {
+//            return myApiService.sayJoke().getData();  // TODO: https://www.journaldev.com/9708/android-asynctask-example-tutorial
+            return myApiService.sayJoke().execute().getData();  // TODO: https://www.journaldev.com/9708/android-asynctask-example-tutorial
+        } catch (IOException ioe) {
+            return ioe.getMessage();
+        }
+
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        String saidJoke = result;
+        Intent jokeIntent = new Intent(context, app.com.vladimirjeune.jokesandroidlib.MainActivity.class);
+        jokeIntent.putExtra(MainActivity.JOKE_TAG, saidJoke);
+        context.startActivity(jokeIntent);
+    }
+
+
+//    class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+//        private static MyApi myApiService = null;
+//        private Context context;
+//
+//        @Override
+//        protected String doInBackground(Pair<Context, String>... params) {
+//            if(myApiService == null) {  // Only do this once
+//                MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+//                        new AndroidJsonFactory(), null)
+//                        // options for running against local devappserver
+//                        // - 10.0.2.2 is localhost's IP address in Android emulator
+//                        // - turn off compression when running against local devappserver
+//                        .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+//                        .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+//                            @Override
+//                            public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+//                                abstractGoogleClientRequest.setDisableGZipContent(true);
+//                            }
+//                        });
+//                // end options for devappserver
+//
+//                myApiService = builder.build();
+//            }
+//
+//            context = params[0].first;
+//            String name = params[0].second;
+//
+//            try {
+//                return myApiService.sayHi(name).execute().getData();
+//            } catch (IOException e) {
+//                return e.getMessage();
+//            }
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+//        }
+//    }
+
 
 }
