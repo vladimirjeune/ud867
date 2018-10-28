@@ -14,7 +14,6 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
-import com.udacity.gradle.builditbigger.jokes.JokeTeller;
 
 import java.io.IOException;
 
@@ -22,9 +21,6 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     public static final String JOKE_TAG = app.com.vladimirjeune.jokesandroidlib.MainActivity.JOKE_TAG;
-
-    JokeTeller jokeTeller = new JokeTeller();
-    String saidJoke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
