@@ -53,8 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
 
-        new EndpointsAsyncTask().execute(this);  // Get joke and display it
+        MainActivityFragment mainActivityFragment =
+                (MainActivityFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.fragment); // TODO: Do something with this maybe
 
+        mainActivityFragment.showInterstitial();
+
+        // TODO: Put this in the LifeCycle function fo the Interstitial in the MAFragment
+//        new EndpointsAsyncTask().execute(this);  // Get joke and display it
     }
 
 }
