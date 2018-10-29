@@ -44,12 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivityFragment mainActivityFragment =
                 (MainActivityFragment) getSupportFragmentManager()
-                        .findFragmentById(R.id.fragment); // TODO: Do something with this maybe
+                        .findFragmentById(R.id.fragment);
 
         mainActivityFragment.showInterstitial();
 
-        // TODO: Put this in the LifeCycle function fo the Interstitial in the MAFragment
-//        new EndpointsAsyncTask().execute(this);  // Get joke and display it
     }
 
 }
