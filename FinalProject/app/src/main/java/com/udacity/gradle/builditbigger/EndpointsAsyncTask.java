@@ -45,12 +45,15 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     }
 
+
     @Override
     protected void onPostExecute(String result) {
         String saidJoke = result;
         Intent jokeIntent = new Intent(context, app.com.vladimirjeune.jokesandroidlib.MainActivity.class);
         jokeIntent.putExtra(MainActivity.JOKE_TAG, saidJoke);
+
         context.startActivity(jokeIntent);
+
     }
 
 }
