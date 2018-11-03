@@ -1,6 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
+
+        // Show ProgressBar
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        MainActivityFragment mainActivityFragment = (MainActivityFragment) fragmentManager.findFragmentById(R.id.fragment);
+        mainActivityFragment.showProgressBar();
 
         new EndpointsAsyncTask().execute(this);  // Get joke and display it
 
