@@ -49,6 +49,32 @@ android {
 
 }
 
+task cloudServerLaunch(dependsOn: ':backend:appengineStart') {
+    doLast {
+        group 'Gradle Project Tasks'
+        description 'Launches the Google Cloud Endpoint Server'
+        println '...Launching'
+    }
+}
+
+task cloudServerShutdown(dependsOn: ':backend:appengineStop') {
+    doLast {
+        group 'Gradle Project Tasks'
+        description 'Shuts down the Google Cloud Endpoint Server'
+        println '...Shutting down'
+    }
+}
+
+
+task cloudTestAll(dependsOn: 'connectedCheck') {
+    doLast {
+        group 'Gradle Project Tasks'
+        description 'Run all tests'
+        println '...Start'
+    }
+}
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     endpointsServer project(path: ':backend', configuration: 'endpoints')
