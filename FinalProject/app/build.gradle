@@ -49,12 +49,49 @@ android {
 
 }
 
+
 task cloudServerLaunch(dependsOn: ':backend:appengineStart') {
     doLast {
         group 'Gradle Project Tasks'
         description 'Launches the Google Cloud Endpoint Server'
         println '...Launching'
     }
+}
+
+
+task cloudTestAll {
+    doLast {
+        group 'Gradle Project Tasks'
+        description 'Run all tests'
+        println '...Start'
+
+    }
+}
+
+
+
+
+task cloudTestingJava(dependsOn: 'test') {
+    doLast {
+        group 'Gradle Project Tasks'
+        description 'Run Java tests'
+        println '...Start testing Java'
+    }
+}
+
+task cloudTestingAndroid(dependsOn: 'connectedAndroidTest') {
+    doLast {
+        group 'Gradle Project Tasks'
+        description 'Run Android tests'
+        println '...Start testing Android'
+    }
+}
+
+//cloudTestAll.dependsOn cloudTestingJava
+//cloudTestAll.dependsOn cloudTestingAndroid
+
+cloudTestAll.dependsOn {
+    tasks.findAll { task -> task.name.startsWith('cloudTesting')}
 }
 
 task cloudServerShutdown(dependsOn: ':backend:appengineStop') {
@@ -66,13 +103,6 @@ task cloudServerShutdown(dependsOn: ':backend:appengineStop') {
 }
 
 
-task cloudTestAll(dependsOn: 'connectedCheck') {
-    doLast {
-        group 'Gradle Project Tasks'
-        description 'Run all tests'
-        println '...Start'
-    }
-}
 
 
 dependencies {
