@@ -59,16 +59,15 @@ task cloudServerLaunch(dependsOn: ':backend:appengineStart') {
 }
 
 
+// Turns on Server; runs all tests, turns off server
 task cloudTestAll {
     doLast {
         group 'Gradle Project Tasks'
         description 'Run all tests'
-        println '...Start'
+        println '...Start tests'
 
     }
 }
-
-
 
 
 task cloudTestingJava(dependsOn: 'test') {
@@ -80,6 +79,10 @@ task cloudTestingJava(dependsOn: 'test') {
 }
 
 task cloudTestingAndroid(dependsOn: 'connectedAndroidTest') {
+
+    // Do the easier non-connnected tests first, if both are specified to run
+    mustRunAfter = ['cloudTestingJava']
+
     doLast {
         group 'Gradle Project Tasks'
         description 'Run Android tests'
@@ -87,12 +90,11 @@ task cloudTestingAndroid(dependsOn: 'connectedAndroidTest') {
     }
 }
 
-//cloudTestAll.dependsOn cloudTestingJava
-//cloudTestAll.dependsOn cloudTestingAndroid
 
-cloudTestAll.dependsOn {
-    tasks.findAll { task -> task.name.startsWith('cloudTesting')}
-}
+//cloudTestAll.dependsOn {
+//    // We have cloudTesting[java] and cloudTesting[android]
+//    tasks.findAll { task -> task.name.startsWith('cloudTesting')}
+//}
 
 task cloudServerShutdown(dependsOn: ':backend:appengineStop') {
     doLast {
@@ -102,6 +104,11 @@ task cloudServerShutdown(dependsOn: ':backend:appengineStop') {
     }
 }
 
+
+cloudTestAll.mustRunAfter cloudServerLaunch
+cloudTestAll.dependsOn cloudTestingJava
+cloudTestAll.dependsOn cloudTestingAndroid
+cloudTestAll.finalizedBy cloudServerShutdown
 
 
 
