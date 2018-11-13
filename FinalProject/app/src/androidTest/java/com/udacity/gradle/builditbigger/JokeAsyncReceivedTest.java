@@ -22,6 +22,7 @@ import static org.hamcrest.Matchers.not;
 @RunWith(AndroidJUnit4.class)
 public class JokeAsyncReceivedTest {
 
+
     // We have access to MainActivity
     @Rule
     public ActivityTestRule<MainActivity> mMainActivityActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -41,12 +42,14 @@ public class JokeAsyncReceivedTest {
     public void jokeAsyncReceivedTest() {
 
 
+        // Ask mentor if you can use this from Firebase's GitHub instead :
+        // https://github.com/firebase/quickstart-android/blob/master/admob/app/src/androidTest/java/com/google/samples/quickstart/admobexample/AdViewIdlingResource.java
+        // https://github.com/firebase/quickstart-android/blob/master/admob/app/src/androidTest/java/com/google/samples/quickstart/admobexample/InterstitialAdTest.java
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
         onView(withId(R.id.tell_joke_button)).perform(click());
 
