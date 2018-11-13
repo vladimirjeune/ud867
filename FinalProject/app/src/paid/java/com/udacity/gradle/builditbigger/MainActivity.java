@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         // Show ProgressBar
         FragmentManager fragmentManager = getSupportFragmentManager();
         MainActivityFragment mainActivityFragment = (MainActivityFragment) fragmentManager.findFragmentById(R.id.fragment);
-        mainActivityFragment.showProgressBar();
 
         new EndpointsAsyncTask().execute(this);  // Get joke and display it
+        mainActivityFragment.showProgressBar();
 
     }
 
