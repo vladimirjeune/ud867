@@ -104,7 +104,8 @@ task cloudServerShutdown(dependsOn: ':backend:appengineStop') {
     }
 }
 
-
+// This helped: https://trickyandroid.com/gradle-tip-3-tasks-ordering/
+cloudTestAll.dependsOn cloudServerLaunch
 cloudTestAll.mustRunAfter cloudServerLaunch
 cloudTestAll.dependsOn cloudTestingJava
 cloudTestAll.dependsOn cloudTestingAndroid
