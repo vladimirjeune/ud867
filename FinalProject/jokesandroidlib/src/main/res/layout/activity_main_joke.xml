@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,9 +23,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_joke"
         />
 
+    <!-- To keep words in bounds use stso and eteo for layoutConstraints -->
     <TextView
         android:id="@+id/tv_joke"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
@@ -37,7 +39,8 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         app:layout_constraintTop_toTopOf="@+id/v_joke_background"
         app:layout_constraintBottom_toBottomOf="@+id/v_joke_background"
-        app:layout_constraintLeft_toLeftOf="@+id/v_joke_background"
+        app:layout_constraintStart_toStartOf="@+id/v_joke_background"
+        app:layout_constraintEnd_toEndOf="@+id/v_joke_background"
         />
 
 </android.support.constraint.ConstraintLayout>
