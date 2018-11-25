@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Gradient, since at this point only one -->
-    <color name="gradient_dark">@color/blue_dark_sky</color>
-    <color name="gradient_light">@color/blue_navy</color>
+    <color name="gradient_dark">@color/yellow_orange</color>
+    <color name="gradient_light">@color/yellow_bright</color>
 
     <!-- Joke Card Gradients -->
     <color name="gradient_yellow_light">@color/yellow_bright</color>
@@ -25,6 +25,10 @@
     <color name="blue_dark_sky">#0575E6</color>
     <color name="blue_navy">#021B79</color>
 
+
+
+    <color name="blue_facebook_dark">#00c6ff</color>
+    <color name="blue_facebook_light">#0072ff</color>
     <!--<color name=""></color>-->
 
 
