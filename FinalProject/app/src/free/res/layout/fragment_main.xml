@@ -33,7 +33,11 @@
             android:id="@+id/instructions_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/instructions" />
+            android:text="@string/instructions"
+            android:textColor="#BB000000"
+            android:fontFamily="@font/spicy_rice"
+            android:textSize="20sp"
+            />
 
         <Button
             android:id="@+id/tell_joke_button"
@@ -41,7 +45,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/instructions_text_view"
             android:onClick="tellJoke"
-            android:text="@string/button_text" />
+            android:text="@string/button_text"
+            android:fontFamily="@font/raleway_semibold_italic"
+            android:background="@drawable/joke_background_gradient"
+            android:textSize="14sp"
+            />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
