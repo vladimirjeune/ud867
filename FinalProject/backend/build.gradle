@@ -32,3 +32,10 @@ dependencies {
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation project(":jokesJavaLib")
 }
+// Got from Udacity Knowledge base
+appengine {
+    run {
+        host = "0.0.0.0"
+        port = 8080
+    }
+}
